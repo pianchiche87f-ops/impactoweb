@@ -1,0 +1,9 @@
+# Core
+Django==4.2.30
+psycopg2-binary==2.9.11
+python-dotenv==1.2.2
+Pillow==12.2.0
+
+# Producción
+gunicorn==21.2.0
+whitenoise==6.7.0

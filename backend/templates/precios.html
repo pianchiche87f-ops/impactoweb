@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Precios — ImpactoWeb </title>
+    <link rel="icon" href="{% static 'assets/img/logo1.png' %}" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet" />
+    <link href="{% static 'assets/css/style.css' %}" rel="stylesheet" />
+    <style>
+        .fade-in {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .compare-table th {
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .compare-table td,
+        .compare-table th {
+            padding: 14px 20px;
+            vertical-align: middle;
+        }
+
+        .compare-table .check-yes {
+            color: var(--accent);
+            font-size: 1.1rem;
+        }
+
+        .compare-table .check-no {
+            color: #ccc;
+            font-size: 1.1rem;
+        }
+
+        .compare-table .featured-col {
+            background: rgba(13, 27, 42, 0.04);
+        }
+
+        .compare-table thead th.featured-col {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .guarantee-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 32px;
+            border: 1px solid #e8ecf0;
+            text-align: center;
+        }
+
+        .guarantee-icon {
+            font-size: 2.5rem;
+            margin-bottom: 12px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <img src="{% static 'assets/img/logo1.png' %}" alt="Logo" height="40" class="me-2 rounded-circle">
+            <a class="navbar-brand" href="{% url 'home' %}">Impacto<span>Web</span></a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+                <i class="bi bi-list text-white fs-4"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navMenu">
+                <ul class="navbar-nav ms-auto align-items-lg-center gap-1">
+                    <li class="nav-item"><a class="nav-link" href="{% url 'servicios' %}">Servicios</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="{% url 'precios' %}">Precios</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'portafolio' %}">Portafolio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'nosotros' %}">Nosotros</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'contacto' %}">Contacto</a></li>
+                    <li class="nav-item ms-2">
+                        <a class="nav-link nav-cta"
+                            href="https://wa.me/593990206856?text=Hola,%20quiero%20información%20sobre%20sus%20servicios"
+                            target="_blank">
+                            <i class="bi bi-whatsapp me-1"></i> Cotizar ahora
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- PAGE HERO -->
+    <div class="page-hero">
+        <div class="container">
+            <span class="section-label">Inversión</span>
+            <h1 class="mt-2">Planes claros, sin letra pequeña</h1>
+            <p class="mt-3">Precios transparentes para cada etapa de tu negocio. Sin costos ocultos, sin sorpresas.</p>
+        </div>
+    </div>
+
+    <!-- PRICING CARDS -->
+    <section class="pricing-section">
+        <div class="container">
+            <div class="row g-4 align-items-center justify-content-center mb-5">
+                <div class="col-md-6 col-lg-4 fade-in">
+                    <div class="pricing-card">
+                        <div class="pricing-name text-muted">Starter</div>
+                        <div class="pricing-price"><sup>$</sup>449</div>
+                        <div class="pricing-period text-muted">pago único · ideal para emprendedores</div>
+                        <ul class="pricing-features">
+                            <li><span class="check">✓</span> 1 Landing page profesional</li>
+                            <li><span class="check">✓</span> Diseño responsive mobile-first</li>
+                            <li><span class="check">✓</span> Botón WhatsApp integrado</li>
+                            <li><span class="check">✓</span> Formulario de contacto</li>
+                            <li><span class="check">✓</span> SEO básico on-page</li>
+                            <li><span class="check">✓</span> Google Maps integrado</li>
+                            <li><span class="check">✓</span> 1 mes de soporte</li>
+                            <li style="opacity:0.4"><span>✗</span> Páginas adicionales</li>
+                            <li style="opacity:0.4"><span>✗</span> Blog / CMS</li>
+                            <li style="opacity:0.4"><span>✗</span> E-commerce</li>
+                        </ul>
+                        <button class="btn-pricing btn-pricing-dark"
+                            onclick="window.open('https://wa.me/593990206856?text=Quiero%20el%20plan%20Starter','_blank')">
+                            Empezar con Starter
+                        </button>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 fade-in">
+                    <div class="pricing-card featured">
+                        <div class="pricing-badge">⭐ Más popular</div>
+                        <div class="pricing-name">Pro</div>
+                        <div class="pricing-price"><sup>$</sup>800</div>
+                        <div class="pricing-period" style="color:rgba(255,255,255,0.6)">pago único · para negocios en
+                            crecimiento</div>
+                        <ul class="pricing-features">
+                            <li><span class="check">✓</span> Hasta 8 páginas</li>
+                            <li><span class="check">✓</span> Diseño premium personalizado</li>
+                            <li><span class="check">✓</span> WhatsApp + formularios avanzados</li>
+                            <li><span class="check">✓</span> SEO optimizado completo</li>
+                            <li><span class="check">✓</span> Blog / CMS básico</li>
+                            <li><span class="check">✓</span> Google Analytics + Search Console</li>
+                            <li><span class="check">✓</span> Dominio + hosting 1er año</li>
+                            <li><span class="check">✓</span> 3 meses de soporte</li>
+                            <li><span class="check">✓</span> 3 revisiones de diseño</li>
+                            <li style="opacity:0.6"><span>✗</span> E-commerce</li>
+                        </ul>
+                        <button class="btn-pricing btn-pricing-accent"
+                            onclick="window.open('https://wa.me/593990206856?text=Quiero%20el%20plan%20Pro','_blank')">
+                            <i class="bi bi-whatsapp me-2"></i> Quiero el plan Pro
+                        </button>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 fade-in">
+                    <div class="pricing-card">
+                        <div class="pricing-name text-muted">Enterprise</div>
+                        <div class="pricing-price"><sup>$</sup>2,499</div>
+                        <div class="pricing-period text-muted">pago único · para empresas</div>
+                        <ul class="pricing-features">
+                            <li><span class="check">✓</span> Todo lo del plan Pro</li>
+                            <li><span class="check">✓</span> E-commerce completo</li>
+                            <li><span class="check">✓</span> Sistema web a medida</li>
+                            <li><span class="check">✓</span> Integraciones API</li>
+                            <li><span class="check">✓</span> Panel de administración</li>
+                            <li><span class="check">✓</span> SEO avanzado + estrategia</li>
+                            <li><span class="check">✓</span> Dominio + hosting 1er año</li>
+                            <li><span class="check">✓</span> 12 meses de soporte</li>
+                            <li><span class="check">✓</span> Revisiones ilimitadas</li>
+                            <li><span class="check">✓</span> Capacitación del equipo</li>
+                        </ul>
+                        <button class="btn-pricing btn-pricing-dark"
+                            onclick="window.open('https://wa.me/593990206856?text=Quiero%20el%20plan%20Enterprise','_blank')">
+                            Solicitar Enterprise
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <p class="text-center" style="font-size:0.85rem;color:var(--text-muted)">
+                ¿Necesitas algo diferente? <a
+                    href="https://wa.me/593990206856?text=Necesito%20un%20plan%20personalizado" target="_blank"
+                    style="color:var(--secondary);font-weight:600">Hablemos y creamos un plan a tu
+                    medida →</a>
+            </p>
+        </div>
+    </section>
+
+    <!-- TABLA COMPARATIVA -->
+    <section>
+        <div class="container">
+            <div class="text-center mb-5 fade-in">
+                <span class="section-label">Comparativa</span>
+                <h2 class="section-title">¿Qué incluye cada plan?</h2>
+            </div>
+            <div class="table-responsive fade-in">
+                <table class="table compare-table align-middle">
+                    <thead>
+                        <tr>
+                            <th style="width:40%">Característica</th>
+                            <th class="text-center">Starter</th>
+                            <th class="text-center featured-col">Pro ⭐</th>
+                            <th class="text-center">Enterprise</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td colspan="4" class="fw-bold"
+                                style="background:#f8fafc;font-size:0.8rem;letter-spacing:1px;text-transform:uppercase;color:var(--text-muted)">
+                                Diseño</td>
+                        </tr>
+                        <tr>
+                            <td>Diseño responsive</td>
+                            <td class="text-center"><i class="bi bi-check-circle-fill check-yes"></i></td>
+                            <td class="text-center featured-col"><i class="bi bi-check-circle-fill check-yes"></i></td>
+                            <td class="text-center"><i class="bi bi-check-circle-fill check-yes"></i></td>
+                        </tr>
+                        <tr>
+                            <td>Diseño premium personalizado</td>
+                            <td class="text-center"><i class="bi bi-x-circle check-no"></i></td>
+                            <td class="text-center featured-col"><i class="bi bi-check-circle-fill check-yes"></i></td>
+                            <td class="text-center"><i class="bi bi-check-circle-fill check-yes"></i></td>
+                        </tr>
+                        <tr>
+                            <td>Páginas incluidas</td>
+                            <td class="text-center">1</td>
+                            <td class="text-center featured-col">Hasta 8</td>
+                            <td class="text-center">Ilimitadas</td>
+                        </tr>
+                        <tr>
+                            <td colspan="4" class="fw-bold"
+                                style="background:#f8fafc;font-size:0.8rem;letter-spacing:1px;text-transform:uppercase;color:var(--text-muted)">
+                                Funcionalidades</td>
+                        </tr>
+                        <tr>
+                            <td>Botón WhatsApp</td>
+                            <td class="text-center"><i class="bi bi-check-circle-fill check-yes"></i></td>
+                            <td class="text-center featured-col"><i class="bi bi-check-circle-fill check-yes"></i></td>
+                            <td class="text-center"><i class="bi bi-check-circle-fill check-yes"></i></td>
+                        </tr>
+                        <tr>
+                            <td>Formulario de contacto</td>
+                            <td class="text-center"><i class="bi bi-check-circle-fill check-yes"></i></td>
+                            <td class="text-center featured-col"><i class="bi bi-check-circle-fill check-yes"></i></td>
+                            <td class="text-center"><i class="bi bi-check-circle-fill check-yes"></i></td>
+                        </tr>
+                        <tr>
+                            <td>Blog / CMS</td>
+                            <td class="text-center"><i class="bi bi-x-circle check-no"></i></td>
+                            <td class="text-center featured-col"><i class="bi bi-check-circle-fill check-yes"></i></td>
+                            <td class="text-center"><i class="bi bi-check-circle-fill check-yes"></i></td>
+                        </tr>
+                        <tr>
+                            <td>E-commerce</td>
+                            <td class="text-center"><i class="bi bi-x-circle check-no"></i></td>
+                            <td class="text-center featured-col"><i class="bi bi-x-circle check-no"></i></td>
+                            <td class="text-center"><i class="bi bi-check-circle-fill check-yes"></i></td>
+                        </tr>
+                        <tr>
+                            <td>Sistema web a medida</td>
+                            <td class="text-center"><i class="bi bi-x-circle check-no"></i></td>
+                            <td class="text-center featured-col"><i class="bi bi-x-circle check-no"></i></td>
+                            <td class="text-center"><i class="bi bi-check-circle-fill check-yes"></i></td>
+                        </tr>
+                        <tr>
+                            <td colspan="4" class="fw-bold"
+                                style="background:#f8fafc;font-size:0.8rem;letter-spacing:1px;text-transform:uppercase;color:var(--text-muted)">
+                                SEO y Marketing</td>
+                        </tr>
+                        <tr>
+                            <td>SEO básico on-page</td>
+                            <td class="text-center"><i class="bi bi-check-circle-fill check-yes"></i></td>
+                            <td class="text-center featured-col"><i class="bi bi-check-circle-fill check-yes"></i></td>
+                            <td class="text-center"><i class="bi bi-check-circle-fill check-yes"></i></td>
+                        </tr>
+                        <tr>
+                            <td>Google Analytics</td>
+                            <td class="text-center"><i class="bi bi-x-circle check-no"></i></td>
+                            <td class="text-center featured-col"><i class="bi bi-check-circle-fill check-yes"></i></td>
+                            <td class="text-center"><i class="bi bi-check-circle-fill check-yes"></i></td>
+                        </tr>
+                        <tr>
+                            <td>SEO avanzado + estrategia</td>
+                            <td class="text-center"><i class="bi bi-x-circle check-no"></i></td>
+                            <td class="text-center featured-col"><i class="bi bi-x-circle check-no"></i></td>
+                            <td class="text-center"><i class="bi bi-check-circle-fill check-yes"></i></td>
+                        </tr>
+                        <tr>
+                            <td colspan="4" class="fw-bold"
+                                style="background:#f8fafc;font-size:0.8rem;letter-spacing:1px;text-transform:uppercase;color:var(--text-muted)">
+                                Soporte</td>
+                        </tr>
+                        <tr>
+                            <td>Meses de soporte incluidos</td>
+                            <td class="text-center">1 mes</td>
+                            <td class="text-center featured-col">3 meses</td>
+                            <td class="text-center">12 meses</td>
+                        </tr>
+                        <tr>
+                            <td>Revisiones de diseño</td>
+                            <td class="text-center">2</td>
+                            <td class="text-center featured-col">3</td>
+                            <td class="text-center">Ilimitadas</td>
+                        </tr>
+                        <tr>
+                            <td>Dominio + hosting 1er año</td>
+                            <td class="text-center"><i class="bi bi-x-circle check-no"></i></td>
+                            <td class="text-center featured-col"><i class="bi bi-check-circle-fill check-yes"></i></td>
+                            <td class="text-center"><i class="bi bi-check-circle-fill check-yes"></i></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td class="text-center py-4"><button class="btn-pricing btn-pricing-dark"
+                                    style="width:auto;padding:12px 24px"
+                                    onclick="window.open('https://wa.me/593990206856?text=Quiero%20el%20plan%20Starter','_blank')">Elegir
+                                    Starter</button></td>
+                            <td class="text-center py-4 featured-col"><button class="btn-pricing btn-pricing-accent"
+                                    style="width:auto;padding:12px 24px"
+                                    onclick="window.open('https://wa.me/593990206856?text=Quiero%20el%20plan%20Pro','_blank')"><i
+                                        class="bi bi-whatsapp me-1"></i> Elegir Pro</button></td>
+                            <td class="text-center py-4"><button class="btn-pricing btn-pricing-dark"
+                                    style="width:auto;padding:12px 24px"
+                                    onclick="window.open('https://wa.me/593990206856?text=Quiero%20el%20plan%20Enterprise','_blank')">Elegir
+                                    Enterprise</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- GARANTÍAS -->
+    <section style="background:var(--light)">
+        <div class="container">
+            <div class="text-center mb-5 fade-in">
+                <span class="section-label">Garantías</span>
+                <h2 class="section-title">Tu inversión está protegida</h2>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-3 fade-in">
+                    <div class="guarantee-card">
+                        <div class="guarantee-icon">🔄</div>
+                        <h5>3 revisiones incluidas</h5>
+                        <p style="font-size:0.9rem">Ajustamos el diseño hasta que quedes 100% satisfecho.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 fade-in">
+                    <div class="guarantee-card">
+                        <div class="guarantee-icon">⚡</div>
+                        <h5>Entrega en tiempo</h5>
+                        <p style="font-size:0.9rem">Cumplimos los plazos acordados o te devolvemos el 10%.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 fade-in">
+                    <div class="guarantee-card">
+                        <div class="guarantee-icon">🔒</div>
+                        <h5>Código es tuyo</h5>
+                        <p style="font-size:0.9rem">Al finalizar, recibes el código fuente completo de tu proyecto.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 fade-in">
+                    <div class="guarantee-card">
+                        <div class="guarantee-icon">📞</div>
+                        <h5>Soporte real</h5>
+                        <p style="font-size:0.9rem">Respondemos por WhatsApp en menos de 2 horas en horario laboral.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-final">
+        <div class="container position-relative" style="z-index:1;text-align:center">
+            <h2>¿Tienes dudas sobre qué plan elegir?</h2>
+            <p>Escríbenos y en 15 minutos te decimos exactamente qué necesitas según tu presupuesto y objetivos.</p>
+            <a href="https://wa.me/593990206856?text=Necesito%20ayuda%20para%20elegir%20un%20plan" target="_blank"
+                class="btn-whatsapp" style="font-size:1.05rem;padding:16px 36px">
+                <i class="bi bi-whatsapp"></i> Asesoría gratuita ahora
+            </a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-lg-4">
+                    <div class="footer-brand">Impacto<span>Web</span></div>
+                    <p style="font-size:0.9rem;max-width:280px">Agencia de desarrollo web enfocada en resultados.</p>
+                </div>
+                <div class="col-6 col-lg-2">
+                    <div class="footer-title">Páginas</div>
+                    <ul class="footer-links">
+                        <li><a href="{% url 'home' %}">Inicio</a></li>
+                        <li><a href="{% url 'servicios' %}">Servicios</a></li>
+                        <li><a href="{% url 'portafolio' %}">Portafolio</a></li>
+                        <li><a href="{% url 'contacto' %}">Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4">
+                    <div class="footer-title">Contacto directo</div>
+                    <a href="https://wa.me/593990206856" target="_blank" class="btn-whatsapp d-inline-flex mb-3"
+                        style="font-size:0.9rem;padding:12px 24px">
+                        <i class="bi bi-whatsapp"></i> Escribir por WhatsApp
+                    </a>
+                </div>
+            </div>
+            <div class="footer-bottom"><span>© 2026 Impacto Web Agency. Todos los derechos reservados.</span></div>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/593990206856?text=Hola,%20me%20interesa%20una%20página%20web" target="_blank"
+        class="whatsapp-float">
+        <i class="bi bi-whatsapp text-white"></i>
+    </a>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{% static 'assets/js/main.js' %}"></script>
+</body>
+
+</html>

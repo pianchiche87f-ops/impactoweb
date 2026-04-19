@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nosotros — ImpactoWeb</title>
+    <link rel="icon" href="{% static 'assets/img/logo1.png' %}" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet" />
+    <link href="{% static 'assets/css/style.css' %}" rel="stylesheet" />
+    <style>
+        .fade-in {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .team-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 32px 24px;
+            border: 1px solid #e8ecf0;
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .team-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .team-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin: 0 auto 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--white);
+        }
+
+        .team-role {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .stat-big {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--white);
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.65);
+            margin-top: 6px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <img src="{% static 'assets/img/logo1.png' %}" alt="Logo" height="40" class="me-2 rounded-circle">
+            <a class="navbar-brand" href="{% url 'home' %}">Impacto<span>Web</span></a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+                <i class="bi bi-list text-white fs-4"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navMenu">
+                <ul class="navbar-nav ms-auto align-items-lg-center gap-1">
+                    <li class="nav-item"><a class="nav-link" href="{% url 'servicios' %}">Servicios</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'precios' %}">Precios</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'portafolio' %}">Portafolio</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="{% url 'nosotros' %}">Nosotros</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'contacto' %}">Contacto</a></li>
+                    <li class="nav-item ms-2">
+                        <a class="nav-link nav-cta"
+                            href="https://wa.me/593990206856?text=Hola,%20quiero%20información%20sobre%20sus%20servicios"
+                            target="_blank">
+                            <i class="bi bi-whatsapp me-1"></i> Cotizar ahora
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="page-hero">
+        <div class="container">
+            <span class="section-label">Quiénes somos</span>
+            <h1 class="mt-2">Una agencia que trabaja<br>como si fuera tu negocio</h1>
+            <p class="mt-3">No somos freelancers. Somos un equipo especializado en hacer crecer negocios en digital.</p>
+        </div>
+    </div>
+
+    <!-- HISTORIA -->
+    <section>
+        <div class="container">
+            <div class="row g-5 align-items-center">
+                <div class="col-lg-6 fade-in">
+                    <span class="section-label">Nuestra historia</span>
+                    <h2 class="section-title mt-2">Nacimos para resolver un problema real</h2>
+                    <p>En 2024, vimos cómo cientos de negocios perdían clientes por tener páginas web lentas, feas o
+                        inexistentes. Decidimos hacer algo al respecto.</p>
+                    <p>Fundamos ImpactoWeb con una misión clara: crear páginas web que realmente vendan, no solo que "se
+                        vean bien". Desde entonces, hemos ayudado a más de 50 negocios a crecer en digital.</p>
+                    <p>Hoy somos un equipo de 5 personas apasionadas por el diseño, el código y los resultados. Cada
+                        proyecto lo tratamos como si fuera nuestro propio negocio.</p>
+                    <div class="d-flex gap-3 mt-4">
+                        <a href="https://wa.me/593990206856?text=Quiero%20conocer%20más%20sobre%20WebPro"
+                            target="_blank" class="btn-whatsapp" style="font-size:0.9rem;padding:13px 28px">
+                            <i class="bi bi-whatsapp"></i> Hablemos
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-6 fade-in">
+                    <div style="background:var(--gradient);border-radius:var(--radius);padding:48px 40px">
+                        <div class="row g-4 text-center">
+                            <div class="col-6">
+                                <div class="stat-big">50+</div>
+                                <div class="stat-label">Proyectos entregados</div>
+                            </div>
+                            <div class="col-6">
+                                <div class="stat-big">98%</div>
+                                <div class="stat-label">Clientes satisfechos</div>
+                            </div>
+                            <div class="col-6">
+                                <div class="stat-big">2</div>
+                                <div class="stat-label">Años de experiencia</div>
+                            </div>
+                            <div class="col-6">
+                                <div class="stat-big">8</div>
+                                <div class="stat-label">Especialistas en el equipo</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- VALORES -->
+    <section style="background:var(--light)">
+        <div class="container">
+            <div class="text-center mb-5 fade-in">
+                <span class="section-label">Lo que nos mueve</span>
+                <h2 class="section-title">Nuestros valores</h2>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-3 fade-in">
+                    <div class="value-card">
+                        <div class="value-icon">🎯</div>
+                        <h5>Orientados a resultados</h5>
+                        <p style="font-size:0.9rem">No entregamos páginas bonitas. Entregamos herramientas que generan
+                            clientes y ventas.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 fade-in">
+                    <div class="value-card">
+                        <div class="value-icon">🤝</div>
+                        <h5>Transparencia total</h5>
+                        <p style="font-size:0.9rem">Precios claros, plazos reales y comunicación honesta en cada etapa
+                            del proyecto.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 fade-in">
+                    <div class="value-card">
+                        <div class="value-icon">⚡</div>
+                        <h5>Velocidad sin sacrificar calidad</h5>
+                        <p style="font-size:0.9rem">Entregamos rápido porque sabemos que tu tiempo es dinero. Sin
+                            comprometer el resultado.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 fade-in">
+                    <div class="value-card">
+                        <div class="value-icon">📈</div>
+                        <h5>Crecimiento continuo</h5>
+                        <p style="font-size:0.9rem">Tu éxito es nuestro éxito. Seguimos apoyándote después de entregar
+                            el proyecto.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EQUIPO -->
+    <section>
+        <div class="container">
+            <div class="text-center mb-5 fade-in">
+                <span class="section-label">El equipo</span>
+                <h2 class="section-title">Las personas detrás de tu proyecto</h2>
+            </div>
+            <div class="row g-4 justify-content-center">
+                <div class="col-6 col-md-4 col-lg-3 fade-in">
+                    <div class="team-card">
+                        <div class="team-avatar" style="background:var(--gradient)">JM</div>
+                        <h6 class="mb-1">Jorge Martínez</h6>
+                        <div class="team-role">CEO & Estrategia Digital</div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4 col-lg-3 fade-in">
+                    <div class="team-card">
+                        <div class="team-avatar" style="background:linear-gradient(135deg,#667eea,#764ba2)">AL</div>
+                        <h6 class="mb-1">Ana López</h6>
+                        <div class="team-role">Lead Designer UX/UI</div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4 col-lg-3 fade-in">
+                    <div class="team-card">
+                        <div class="team-avatar" style="background:linear-gradient(135deg,#43e97b,#38f9d7)">CR</div>
+                        <h6 class="mb-1">Carlos Ruiz</h6>
+                        <div class="team-role">Lead Developer</div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4 col-lg-3 fade-in">
+                    <div class="team-card">
+                        <div class="team-avatar" style="background:linear-gradient(135deg,#f093fb,#f5576c)">MG</div>
+                        <h6 class="mb-1">María González</h6>
+                        <div class="team-role">SEO & Marketing</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-final">
+        <div class="container position-relative" style="z-index:1;text-align:center">
+            <h2>¿Listo para trabajar juntos?</h2>
+            <p>Cuéntanos tu proyecto. Somos el equipo que necesitas para crecer en digital.</p>
+            <a href="https://wa.me/593990206856?text=Quiero%20trabajar%20con%20WebPro" target="_blank"
+                class="btn-whatsapp" style="font-size:1.05rem;padding:16px 36px">
+                <i class="bi bi-whatsapp"></i> Empecemos hoy
+            </a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-lg-4">
+                    <div class="footer-brand">Impacto<span>Web</span></div>
+                    <p style="font-size:0.9rem;max-width:280px">Agencia de desarrollo web enfocada en resultados.</p>
+                </div>
+                <div class="col-6 col-lg-2">
+                    <div class="footer-title">Páginas</div>
+                    <ul class="footer-links">
+                        <li><a href="{% url 'home' %}">Inicio</a></li>
+                        <li><a href="{% url 'servicios' %}">Servicios</a></li>
+                        <li><a href="{% url 'precios' %}">Precios</a></li>
+                        <li><a href="{% url 'contacto' %}">Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4">
+                    <div class="footer-title">Contacto directo</div>
+                    <a href="https://wa.me/593990206856" target="_blank" class="btn-whatsapp d-inline-flex mb-3"
+                        style="font-size:0.9rem;padding:12px 24px">
+                        <i class="bi bi-whatsapp"></i> Escribir por WhatsApp
+                    </a>
+                </div>
+            </div>
+            <div class="footer-bottom"><span>© 2026 Impacto Web Agency. Todos los derechos reservados.</span></div>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/593990206856?text=Hola,%20me%20interesa%20una%20página%20web" target="_blank"
+        class="whatsapp-float">
+        <i class="bi bi-whatsapp text-white"></i>
+    </a>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{% static 'assets/js/main.js' %}"></script>
+</body>
+
+</html>

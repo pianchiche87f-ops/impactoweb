@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ImpactoWeb</title>
+    <link rel="icon" href="{% static 'assets/img/logo1.png' %}" type="image/png">
+    <meta name="description"
+        content="Diseñamos y desarrollamos páginas web profesionales para emprendedores, negocios y empresas. Resultados reales, inversión inteligente." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet" />
+    <link href="{% static 'assets/css/style.css' %}" rel="stylesheet" />
+    <style>
+        .fade-in {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ===== TESTIMONIOS CAROUSEL ===== */
+        .testimonials {
+            background: var(--primary);
+        }
+
+        .testimonial-carousel-wrap {
+            max-width: 780px;
+            margin: 0 auto;
+        }
+
+        .carousel-testimonial {
+            background: rgba(255, 255, 255, 0.07);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 20px;
+            padding: 48px 52px;
+            text-align: center;
+        }
+
+        .carousel-testimonial .testimonial-stars {
+            color: #fbbf24;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            letter-spacing: 3px;
+        }
+
+        .carousel-testimonial .testimonial-text {
+            color: rgba(255, 255, 255, 0.88);
+            font-size: 1.1rem;
+            line-height: 1.8;
+            font-style: italic;
+            margin-bottom: 32px;
+        }
+
+        .carousel-testimonial .testimonial-author {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+        }
+
+        .carousel-testimonial .testimonial-avatar {
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #0d1b2a, #1a3a5c);
+            border: 2px solid var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            color: var(--white);
+            font-size: 0.95rem;
+            flex-shrink: 0;
+        }
+
+        .carousel-testimonial .testimonial-name {
+            font-weight: 700;
+            color: var(--white);
+            font-size: 0.95rem;
+            text-align: left;
+        }
+
+        .carousel-testimonial .testimonial-role {
+            font-size: 0.82rem;
+            color: rgba(255, 255, 255, 0.5);
+            text-align: left;
+        }
+
+        /* Controles carousel */
+        .carousel-control-prev,
+        .carousel-control-next {
+            width: 48px;
+            height: 48px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            top: 50%;
+            transform: translateY(-50%);
+            opacity: 1;
+            transition: all 0.3s ease;
+        }
+
+        .carousel-control-prev {
+            left: -64px;
+        }
+
+        .carousel-control-next {
+            right: -64px;
+        }
+
+        .carousel-control-prev:hover,
+        .carousel-control-next:hover {
+            background: var(--accent);
+        }
+
+        .carousel-control-prev-icon,
+        .carousel-control-next-icon {
+            width: 18px;
+            height: 18px;
+        }
+
+        .carousel-indicators {
+            position: static;
+            margin-top: 28px;
+            gap: 6px;
+        }
+
+        .carousel-indicators button {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            border: none;
+            transition: all 0.3s ease;
+        }
+
+        .carousel-indicators button.active {
+            background: var(--accent);
+            width: 24px;
+            border-radius: 4px;
+        }
+
+        @media (max-width: 767px) {
+            .carousel-testimonial {
+                padding: 32px 24px;
+            }
+
+            .carousel-testimonial .testimonial-text {
+                font-size: 0.95rem;
+            }
+
+            .carousel-control-prev {
+                left: -8px;
+            }
+
+            .carousel-control-next {
+                right: -8px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <img src="{% static 'assets/img/logo1.png' %}" alt="Logo" height="40" class="me-2 rounded-circle">
+            <a class="navbar-brand" href="{% url 'home' %}">Impacto<span>Web</span></a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+                <i class="bi bi-list text-white fs-4"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navMenu">
+                <ul class="navbar-nav ms-auto align-items-lg-center gap-1">
+                    <li class="nav-item"><a class="nav-link" href="{% url 'servicios' %}">Servicios</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'precios' %}">Precios</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'portafolio' %}">Portafolio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'nosotros' %}">Nosotros</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'contacto' %}">Contacto</a></li>
+                    <li class="nav-item ms-2">
+                        <a class="nav-link nav-cta"
+                            href="https://wa.me/593990206856?text=Hola,%20quiero%20información%20sobre%20sus%20servicios"
+                            target="_blank">
+                            <i class="bi bi-whatsapp me-1"></i> Cotizar ahora
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="container position-relative" style="z-index:1">
+            <div class="row align-items-center g-5">
+                <!-- Texto centrado -->
+                <div class="col-lg-7 text-center hero-content-col">
+                    <div class="hero-badge justify-content-center">
+                        <i class="bi bi-lightning-charge-fill"></i> Agencia de desarrollo web premium
+                    </div>
+                    <h1>Tu página web que <span>convierte visitas</span> en clientes reales</h1>
+                    <p class="lead mx-auto">Diseñamos sitios web profesionales para emprendedores, negocios y empresas
+                        que quieren crecer en digital. Sin excusas, con resultados.</p>
+                    <div class="d-flex flex-wrap gap-3 justify-content-center">
+                        <a href="https://wa.me/593990206856?text=Hola,%20quiero%20cotizar%20una%20página%20web"
+                            target="_blank" class="btn-whatsapp">
+                            <i class="bi bi-whatsapp"></i> Quiero mi página web
+                        </a>
+                        <a href="{% url 'portafolio' %}" class="btn-outline-light-custom btn-portfolio-hero">
+                            <i class="bi bi-grid-3x3-gap-fill"></i> Ver portafolio
+                        </a>
+                    </div>
+                    <div class="hero-stats justify-content-center">
+                        <div>
+                            <div class="hero-stat-number">+50</div>
+                            <div class="hero-stat-label">Proyectos entregados</div>
+                        </div>
+                        <div>
+                            <div class="hero-stat-number">98%</div>
+                            <div class="hero-stat-label">Clientes satisfechos</div>
+                        </div>
+                        <div>
+                            <div class="hero-stat-number">5★</div>
+                            <div class="hero-stat-label">Calificación promedio</div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Logo animado -->
+                <div class="col-lg-5 d-none d-lg-flex justify-content-center align-items-center">
+                    <div class="hero-logo-box">
+                        <div class="hero-logo-inner">
+                            <div class="hero-logo-icon"><i class="bi bi-code-slash"></i></div>
+                            <div class="hero-logo-name">Impacto<span>Web</span></div>
+                            <div class="hero-logo-tagline">Soluciones Digitales Profesional</div>
+                            <div class="hero-logo-dots">
+                                <span></span><span></span><span></span>
+                            </div>
+                        </div>
+                        <div class="hero-logo-ring ring-1"></div>
+                        <div class="hero-logo-ring ring-2"></div>
+                        <div class="hero-logo-ring ring-3"></div>
+                        <div class="floating-card card-1">
+                            <div class="dot-green"></div> Proyecto entregado ✓
+                        </div>
+                        <div class="floating-card card-2"><i class="bi bi-graph-up-arrow text-success"></i> +340% más
+                            visitas</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PORTAFOLIO PREVIEW -->
+    <section>
+        <div class="container">
+            <div class="text-center mb-5 fade-in">
+                <span class="section-label">Nuestro trabajo</span>
+                <h2 class="section-title">Proyectos que hablan por sí solos</h2>
+                <p class="section-subtitle">Cada proyecto es una historia de éxito. Aquí algunos de nuestros favoritos.
+                </p>
+            </div>
+            <div class="row g-3">
+                <div class="col-md-6 col-lg-4 fade-in">
+                    <div class="portfolio-item">
+                        <div class="portfolio-placeholder" style="background:linear-gradient(135deg,#667eea,#764ba2)">🛒
+                        </div>
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-tag">E-commerce</div>
+                            <p class="portfolio-title">Tienda de Moda Online</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 fade-in">
+                    <div class="portfolio-item">
+                        <div class="portfolio-placeholder" style="background:linear-gradient(135deg,#f093fb,#f5576c)">🏢
+                        </div>
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-tag">Corporativo</div>
+                            <p class="portfolio-title">Constructora Alfa</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 fade-in">
+                    <div class="portfolio-item">
+                        <div class="portfolio-placeholder" style="background:linear-gradient(135deg,#4facfe,#00f2fe)">🍕
+                        </div>
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-tag">Restaurante</div>
+                            <p class="portfolio-title">Pizzería Don Marco</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 fade-in">
+                    <div class="portfolio-item">
+                        <div class="portfolio-placeholder" style="background:linear-gradient(135deg,#43e97b,#38f9d7)">⚕️
+                        </div>
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-tag">Salud</div>
+                            <p class="portfolio-title">Clínica Dental Smile</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 fade-in">
+                    <div class="portfolio-item">
+                        <div class="portfolio-placeholder" style="background:linear-gradient(135deg,#fa709a,#fee140)">🎓
+                        </div>
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-tag">Educación</div>
+                            <p class="portfolio-title">Academia TechLearn</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 fade-in">
+                    <div class="portfolio-item">
+                        <div class="portfolio-placeholder" style="background:linear-gradient(135deg,#a18cd1,#fbc2eb)">🏨
+                        </div>
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-tag">Turismo</div>
+                            <p class="portfolio-title">Hotel Vista Mar</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-5 fade-in">
+                <a href="{% url 'portafolio' %}" class="btn-primary-custom">Ver portafolio completo <i
+                        class="bi bi-arrow-right"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIOS CAROUSEL -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="text-center mb-5 fade-in">
+                <span class="section-label" style="color:var(--accent)">Testimonios</span>
+                <h2 class="section-title" style="color:var(--white)">Lo que dicen nuestros clientes</h2>
+                <p class="section-subtitle" style="color:rgba(255,255,255,0.6)">Resultados reales de negocios reales.
+                </p>
+            </div>
+
+            <div class="testimonial-carousel-wrap position-relative fade-in">
+                <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
+
+                    <!-- Indicadores -->
+                    <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#testimonialCarousel" data-bs-slide-to="0"
+                            class="active"></button>
+                        <button type="button" data-bs-target="#testimonialCarousel" data-bs-slide-to="1"></button>
+                        <button type="button" data-bs-target="#testimonialCarousel" data-bs-slide-to="2"></button>
+                        <button type="button" data-bs-target="#testimonialCarousel" data-bs-slide-to="3"></button>
+                        <button type="button" data-bs-target="#testimonialCarousel" data-bs-slide-to="4"></button>
+                    </div>
+
+                    <!-- Slides -->
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <div class="carousel-testimonial">
+                                <div class="testimonial-stars">★★★★★</div>
+                                <p class="testimonial-text">"En menos de 2 semanas tenía mi tienda online funcionando.
+                                    Las ventas aumentaron un 200% en el primer mes. Totalmente recomendados, el equipo
+                                    estuvo pendiente en cada paso."</p>
+                                <div class="testimonial-author">
+                                    <div class="testimonial-avatar">MR</div>
+                                    <div>
+                                        <div class="testimonial-name">María Rodríguez</div>
+                                        <div class="testimonial-role">Dueña de boutique de ropa · Ecuador</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="carousel-testimonial">
+                                <div class="testimonial-stars">★★★★★</div>
+                                <p class="testimonial-text">"Profesionalismo de primer nivel. Entendieron exactamente lo
+                                    que necesitaba para mi empresa. El sitio transmite exactamente la imagen corporativa
+                                    que quería proyectar."</p>
+                                <div class="testimonial-author">
+                                    <div class="testimonial-avatar">CL</div>
+                                    <div>
+                                        <div class="testimonial-name">Carlos López</div>
+                                        <div class="testimonial-role">Director General · Constructora Alfa</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="carousel-testimonial">
+                                <div class="testimonial-stars">★★★★★</div>
+                                <p class="testimonial-text">"Tenía miedo de invertir en una página web, pero fue la
+                                    mejor decisión de mi negocio. Ahora recibo consultas por WhatsApp todos los días
+                                    gracias al sitio."</p>
+                                <div class="testimonial-author">
+                                    <div class="testimonial-avatar">AG</div>
+                                    <div>
+                                        <div class="testimonial-name">Ana García</div>
+                                        <div class="testimonial-role">Emprendedora · Nutrición Fit</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="carousel-testimonial">
+                                <div class="testimonial-stars">★★★★★</div>
+                                <p class="testimonial-text">"El proceso fue muy claro desde el inicio. Nos presentaron
+                                    el diseño antes de programar y pudimos hacer ajustes. El resultado superó nuestras
+                                    expectativas completamente."</p>
+                                <div class="testimonial-author">
+                                    <div class="testimonial-avatar">JP</div>
+                                    <div>
+                                        <div class="testimonial-name">Jorge Peña</div>
+                                        <div class="testimonial-role">CEO · Academia TechLearn</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="carousel-testimonial">
+                                <div class="testimonial-stars">★★★★★</div>
+                                <p class="testimonial-text">"Nuestras reservas online aumentaron un 300% en los primeros
+                                    3 meses. El sitio carga rápido, se ve perfecto en el celular y los clientes lo
+                                    encuentran fácilmente en Google."</p>
+                                <div class="testimonial-author">
+                                    <div class="testimonial-avatar">LV</div>
+                                    <div>
+                                        <div class="testimonial-name">Laura Vásquez</div>
+                                        <div class="testimonial-role">Gerente · Hotel Vista Mar</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Controles -->
+                    <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel"
+                        data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon"></span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#testimonialCarousel"
+                        data-bs-slide="next">
+                        <span class="carousel-control-next-icon"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROCESO -->
+    <section>
+        <div class="container">
+            <div class="text-center mb-5 fade-in">
+                <span class="section-label">Cómo trabajamos</span>
+                <h2 class="section-title">Tu proyecto en 4 pasos simples</h2>
+                <p class="section-subtitle">Un proceso claro y transparente para que siempre sepas en qué etapa estamos.
+                </p>
+            </div>
+            <div class="row g-4">
+                <div class="col-6 col-lg-3 fade-in">
+                    <div class="process-step">
+                        <div class="process-number">1</div>
+                        <div class="process-connector"></div>
+                        <h5>Consulta gratis</h5>
+                        <p>Hablamos por WhatsApp, entendemos tu negocio y definimos objetivos claros.</p>
+                    </div>
+                </div>
+                <div class="col-6 col-lg-3 fade-in">
+                    <div class="process-step">
+                        <div class="process-number">2</div>
+                        <div class="process-connector"></div>
+                        <h5>Diseño y propuesta</h5>
+                        <p>Creamos el diseño visual y te presentamos la propuesta antes de programar.</p>
+                    </div>
+                </div>
+                <div class="col-6 col-lg-3 fade-in">
+                    <div class="process-step">
+                        <div class="process-number">3</div>
+                        <div class="process-connector"></div>
+                        <h5>Desarrollo</h5>
+                        <p>Programamos tu sitio con las mejores tecnologías. Tú revisas y apruebas.</p>
+                    </div>
+                </div>
+                <div class="col-6 col-lg-3 fade-in">
+                    <div class="process-step">
+                        <div class="process-number">4</div>
+                        <h5>Lanzamiento</h5>
+                        <p>Publicamos tu sitio, te capacitamos y te acompañamos en el arranque.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA FINAL -->
+    <section class="cta-final">
+        <div class="container position-relative" style="z-index:1">
+            <div class="fade-in">
+                <span class="section-label">¿Listo para crecer?</span>
+                <h2>Tu competencia ya tiene<br>una página web profesional</h2>
+                <p>No esperes más. Cada día sin presencia digital es dinero que dejas sobre la mesa.<br>Hablemos hoy y
+                    ten tu sitio listo en menos de 2 semanas.</p>
+                <div class="d-flex flex-wrap gap-3 justify-content-center">
+                    <a href="https://wa.me/593990206856?text=Hola,%20quiero%20empezar%20mi%20proyecto%20web"
+                        target="_blank" class="btn-whatsapp" style="font-size:1.1rem;padding:18px 40px">
+                        <i class="bi bi-whatsapp"></i> Iniciar mi proyecto ahora
+                    </a>
+                    <a href="{% url 'precios' %}" class="btn-outline-light-custom">Ver planes y precios</a>
+                </div>
+                <p class="mt-4" style="font-size:0.85rem;color:rgba(255,255,255,0.5)">
+                    <i class="bi bi-shield-check me-1" style="color:var(--accent)"></i> Sin compromisos · Consulta 100%
+                    gratuita · Respuesta en menos de 1 hora
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="text-center mb-5 fade-in">
+                        <span class="section-label">FAQ</span>
+                        <h2 class="section-title">Preguntas frecuentes</h2>
+                    </div>
+                    <div class="accordion" id="faqAccordion">
+                        <div class="accordion-item fade-in">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#faq1">
+                                    ¿Cuánto tiempo tarda en estar lista mi página web?
+                                </button>
+                            </h2>
+                            <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">Dependiendo del plan, entre 5 y 15 días hábiles. Una landing
+                                    page puede estar lista en 5 días. Un sitio corporativo completo toma entre 10 y 15
+                                    días.</div>
+                            </div>
+                        </div>
+                        <div class="accordion-item fade-in">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#faq2">
+                                    ¿Necesito saber de tecnología para administrar mi sitio?
+                                </button>
+                            </h2>
+                            <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">No. Te entregamos el sitio con un panel de administración
+                                    sencillo y te capacitamos para que puedas actualizar contenido sin conocimientos
+                                    técnicos.</div>
+                            </div>
+                        </div>
+                        <div class="accordion-item fade-in">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#faq3">
+                                    ¿El precio incluye dominio y hosting?
+                                </button>
+                            </h2>
+                            <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">El primer año de dominio y hosting está incluido en los
+                                    planes Pro y Enterprise. En el plan Starter, te asesoramos para contratarlos al
+                                    mejor precio.</div>
+                            </div>
+                        </div>
+                        <div class="accordion-item fade-in">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#faq4">
+                                    ¿Puedo ver ejemplos de trabajos anteriores?
+                                </button>
+                            </h2>
+                            <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">Claro. Visita nuestra sección de <a
+                                        href="{% url 'portafolio' %}">portafolio</a> o escríbenos por WhatsApp y te
+                                    enviamos
+                                    ejemplos específicos de tu industria.</div>
+                            </div>
+                        </div>
+                        <div class="accordion-item fade-in">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#faq5">
+                                    ¿Qué pasa si no quedo satisfecho con el diseño?
+                                </button>
+                            </h2>
+                            <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">Incluimos hasta 3 rondas de revisiones sin costo adicional.
+                                    Nuestro objetivo es que quedes 100% satisfecho con el resultado final.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-lg-4">
+                    <div class="footer-brand">Impacto<span>Web</span></div>
+                    <p style="font-size:0.9rem;max-width:280px">Agencia de desarrollo web enfocada en resultados.
+                        Transformamos negocios con presencia digital profesional.</p>
+                    <div class="d-flex gap-2 mt-4">
+                        <a href="#" class="social-link"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="social-link"><i class="bi bi-linkedin"></i></a>
+                        <a href="https://wa.me/593990206856" target="_blank" class="social-link"><i
+                                class="bi bi-whatsapp"></i></a>
+                    </div>
+                </div>
+                <div class="col-6 col-lg-2">
+                    <div class="footer-title">Servicios</div>
+                    <ul class="footer-links">
+                        <li><a href="{% url 'servicios' %}">Landing Pages</a></li>
+                        <li><a href="{% url 'servicios' %}">E-commerce</a></li>
+                        <li><a href="{% url 'servicios' %}">Corporativos</a></li>
+                        <li><a href="{% url 'servicios' %}">Sistemas Web</a></li>
+                        <li><a href="{% url 'servicios' %}">SEO</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-lg-2">
+                    <div class="footer-title">Empresa</div>
+                    <ul class="footer-links">
+                        <li><a href="{% url 'nosotros' %}">Nosotros</a></li>
+                        <li><a href="{% url 'portafolio' %}">Portafolio</a></li>
+                        <li><a href="{% url 'precios' %}">Precios</a></li>
+                        <li><a href="{% url 'contacto' %}">Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4">
+                    <div class="footer-title">Contacto directo</div>
+                    <a href="https://wa.me/593990206856" target="_blank" class="btn-whatsapp d-inline-flex mb-3"
+                        style="font-size:0.9rem;padding:12px 24px">
+                        <i class="bi bi-whatsapp"></i> Escribir por WhatsApp
+                    </a>
+                    <p style="font-size:0.85rem">📧 hola@impactoweb.agency<br>📍 Machala, Ecuador</p>
+                </div>
+            </div>
+            <div class="footer-bottom d-flex flex-wrap justify-content-between align-items-center gap-3">
+                <span>© 2026 ImpactoWeb Agency. Todos los derechos reservados.</span>
+                <span>Hecho con ❤️ para negocios que quieren crecer</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp flotante -->
+    <a href="https://wa.me/1234567890?text=Hola,%20me%20interesa%20una%20página%20web" target="_blank"
+        class="whatsapp-float" title="Chatea con nosotros">
+        <i class="bi bi-whatsapp text-white"></i>
+    </a>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{% static 'assets/js/main.js' %}"></script>
+</body>
+
+</html>

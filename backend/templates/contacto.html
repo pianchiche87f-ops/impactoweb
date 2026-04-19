@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contacto — ImpactoWeb</title>
+    <link rel="icon" href="{% static 'assets/img/logo1.png' %}" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet" />
+    <link href="{% static 'assets/css/style.css' %}" rel="stylesheet" />
+    <style>
+        .fade-in {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .form-label {
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--primary);
+            margin-bottom: 6px;
+        }
+
+        .btn-submit {
+            background: var(--gradient);
+            color: var(--white);
+            font-weight: 700;
+            font-size: 1rem;
+            padding: 16px 40px;
+            border-radius: 50px;
+            border: none;
+            width: 100%;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .btn-submit:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <img src="{% static 'assets/img/logo1.png' %}" alt="Logo" height="40" class="me-2 rounded-circle">
+            <a class="navbar-brand" href="{% url 'home' %}">Impacto<span>Web</span></a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+                <i class="bi bi-list text-white fs-4"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navMenu">
+                <ul class="navbar-nav ms-auto align-items-lg-center gap-1">
+                    <li class="nav-item"><a class="nav-link" href="{% url 'servicios' %}">Servicios</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'precios' %}">Precios</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'portafolio' %}">Portafolio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'nosotros' %}">Nosotros</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="{% url 'contacto' %}">Contacto</a></li>
+                    <li class="nav-item ms-2">
+                        <a class="nav-link nav-cta"
+                            href="https://wa.me/593990206856?text=Hola,%20quiero%20información%20sobre%20sus%20servicios"
+                            target="_blank">
+                            <i class="bi bi-whatsapp me-1"></i> Cotizar ahora
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="page-hero">
+        <div class="container">
+            <span class="section-label">Hablemos</span>
+            <h1 class="mt-2">Cuéntanos tu proyecto</h1>
+            <p class="mt-3">Respondemos en menos de 1 hora en horario laboral. Sin compromisos.</p>
+        </div>
+    </div>
+
+    <section>
+        <div class="container">
+            <div class="row g-5">
+                <!-- Formulario -->
+                <div class="col-lg-7 fade-in">
+                    <div class="contact-form-card">
+                        <h3 class="mb-2" style="font-size:1.5rem">Envíanos un mensaje</h3>
+                        <p style="font-size:0.9rem;margin-bottom:32px">O si prefieres respuesta inmediata, escríbenos
+                            directo por WhatsApp.</p>
+
+                        <!-- WhatsApp destacado -->
+                        <a href="https://wa.me/593990206856?text=Hola,%20quiero%20cotizar%20una%20página%20web"
+                            target="_blank" class="btn-whatsapp d-flex justify-content-center mb-4"
+                            style="font-size:1rem;padding:16px">
+                            <i class="bi bi-whatsapp"></i> Escribir por WhatsApp (respuesta inmediata)
+                        </a>
+
+                        <div class="d-flex align-items-center gap-3 mb-4">
+                            <hr style="flex:1;border-color:#e8ecf0">
+                            <span style="font-size:0.8rem;color:var(--text-muted);font-weight:600">O COMPLETA EL
+                                FORMULARIO</span>
+                            <hr style="flex:1;border-color:#e8ecf0">
+                        </div>
+
+                        <form id="contactForm" novalidate>
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label class="form-label" for="nombre">Nombre completo *</label>
+                                    <input type="text" class="form-control" id="nombre" name="nombre"
+                                        placeholder="Tu nombre" required />
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label" for="empresa">Empresa / Negocio</label>
+                                    <input type="text" class="form-control" id="empresa" name="empresa"
+                                        placeholder="Nombre de tu empresa" />
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label" for="email">Correo electrónico *</label>
+                                    <input type="email" class="form-control" id="email" name="email"
+                                        placeholder="tu@correo.com" required />
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label" for="telefono">WhatsApp / Teléfono</label>
+                                    <input type="tel" class="form-control" id="telefono" name="telefono"
+                                        placeholder="+593 99 000 0000" />
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label" for="servicio">¿Qué necesitas?</label>
+                                    <select class="form-select" id="servicio" name="servicio">
+                                        <option value="">Selecciona un servicio</option>
+                                        <option>Landing Page</option>
+                                        <option>Tienda Online (E-commerce)</option>
+                                        <option>Sitio Corporativo</option>
+                                        <option>Sistema Web a Medida</option>
+                                        <option>SEO y Posicionamiento</option>
+                                        <option>No sé, necesito asesoría</option>
+                                    </select>
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label" for="presupuesto">Presupuesto aproximado</label>
+                                    <select class="form-select" id="presupuesto" name="presupuesto">
+                                        <option value="">Selecciona un rango</option>
+                                        <option>Menos de $500</option>
+                                        <option>$500 - $1,000</option>
+                                        <option>$1,000 - $2,500</option>
+                                        <option>Más de $2,500</option>
+                                    </select>
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label" for="mensaje">Cuéntanos tu proyecto *</label>
+                                    <textarea class="form-control" id="mensaje" name="mensaje" rows="4"
+                                        placeholder="Describe brevemente qué necesitas, tu industria y cualquier detalle relevante..."
+                                        required></textarea>
+                                </div>
+                                <div class="col-12">
+                                    <div id="form-alert" class="alert d-none mb-3" role="alert"></div>
+                                    <button type="submit" class="btn-submit" id="btn-submit">
+                                        Enviar mensaje <i class="bi bi-send ms-2"></i>
+                                    </button>
+                                    <p class="text-center mt-3" style="font-size:0.8rem;color:var(--text-muted)">
+                                        <i class="bi bi-shield-check me-1" style="color:var(--accent)"></i> Tu
+                                        información está segura. No hacemos spam.
+                                    </p>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Info de contacto -->
+                <div class="col-lg-5 fade-in">
+                    <div class="contact-info-card">
+                        <h4 style="color:var(--white);margin-bottom:8px">Información de contacto</h4>
+                        <p style="color:rgba(255,255,255,0.65);font-size:0.9rem;margin-bottom:32px">Estamos disponibles
+                            para ayudarte a crecer.</p>
+
+                        <div class="contact-info-item">
+                            <div class="contact-info-icon"><i class="bi bi-whatsapp text-white"></i></div>
+                            <div class="contact-info-text">
+                                <h6>WhatsApp</h6>
+                                <p>+593 990 206 856<br>Respuesta en menos de 1 hora</p>
+                            </div>
+                        </div>
+                        <div class="contact-info-item">
+                            <div class="contact-info-icon"><i class="bi bi-envelope text-white"></i></div>
+                            <div class="contact-info-text">
+                                <h6>Correo electrónico</h6>
+                                <p>pianchiche87f@gmail.com</p>
+                            </div>
+                        </div>
+                        <div class="contact-info-item">
+                            <div class="contact-info-icon"><i class="bi bi-clock text-white"></i></div>
+                            <div class="contact-info-text">
+                                <h6>Horario de atención</h6>
+                                <p>Lunes a Viernes: 9am - 6pm<br>Sábados: 10am - 2pm</p>
+                            </div>
+                        </div>
+                        <div class="contact-info-item">
+                            <div class="contact-info-icon"><i class="bi bi-geo-alt text-white"></i></div>
+                            <div class="contact-info-text">
+                                <h6>Ubicación</h6>
+                                <p>Ciudad de Machala, Ecuador<br>Atendemos clientes en todo LATAM</p>
+                            </div>
+                        </div>
+
+                        <div class="mt-4 pt-4" style="border-top:1px solid rgba(255,255,255,0.1)">
+                            <p style="color:rgba(255,255,255,0.65);font-size:0.85rem;margin-bottom:16px">Síguenos en
+                                redes sociales</p>
+                            <div class="d-flex gap-2">
+                                <a href="#" class="social-link"><i class="bi bi-instagram"></i></a>
+                                <a href="#" class="social-link"><i class="bi bi-facebook"></i></a>
+                                <a href="#" class="social-link"><i class="bi bi-linkedin"></i></a>
+                                <a href="https://wa.me/593990206856" target="_blank" class="social-link"><i
+                                        class="bi bi-whatsapp"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ rápido -->
+    <section style="background:var(--light)">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="text-center mb-5 fade-in">
+                        <span class="section-label">FAQ</span>
+                        <h2 class="section-title">Preguntas frecuentes</h2>
+                    </div>
+                    <div class="accordion" id="faqAccordion">
+                        <div class="accordion-item fade-in">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#faq1">
+                                    ¿Cuánto tiempo tarda en estar lista mi página web?
+                                </button>
+                            </h2>
+                            <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">Entre 5 y 15 días hábiles según el plan. Una landing page
+                                    puede estar lista en 5 días. Un sitio corporativo completo toma entre 10 y 15 días.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item fade-in">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#faq2">
+                                    ¿Cómo es el proceso de pago?
+                                </button>
+                            </h2>
+                            <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">50% al inicio del proyecto y 50% al entregar. Aceptamos
+                                    transferencia bancaria, tarjeta de crédito/débito y PayPal.</div>
+                            </div>
+                        </div>
+                        <div class="accordion-item fade-in">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#faq3">
+                                    ¿Puedo ver el avance del proyecto antes de la entrega final?
+                                </button>
+                            </h2>
+                            <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">Sí. Compartimos un enlace de vista previa para que puedas
+                                    revisar y aprobar el diseño antes de publicarlo. Incluimos hasta 3 rondas de
+                                    revisiones.</div>
+                            </div>
+                        </div>
+                        <div class="accordion-item fade-in">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#faq4">
+                                    ¿Trabajan con clientes fuera de Ecuador?
+                                </button>
+                            </h2>
+                            <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">Sí. Atendemos clientes en toda Latinoamérica y España. Todo
+                                    el proceso es 100% remoto y coordinado por WhatsApp y videollamada.</div>
+                            </div>
+                        </div>
+                        <div class="accordion-item fade-in">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#faq5">
+                                    ¿Qué necesito tener listo para empezar?
+                                </button>
+                            </h2>
+                            <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">Solo necesitas tu logo (si tienes), los textos de tu negocio
+                                    y algunas fotos. Si no tienes nada, te ayudamos a crear el contenido desde cero.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-lg-4">
+                    <div class="footer-brand">Impacto<span>Web</span></div>
+                    <p style="font-size:0.9rem;max-width:280px">Agencia de desarrollo web enfocada en resultados.</p>
+                    <div class="d-flex gap-2 mt-4">
+                        <a href="#" class="social-link"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="social-link"><i class="bi bi-linkedin"></i></a>
+                        <a href="https://wa.me/593990206856" target="_blank" class="social-link"><i
+                                class="bi bi-whatsapp"></i></a>
+                    </div>
+                </div>
+                <div class="col-6 col-lg-2">
+                    <div class="footer-title">Páginas</div>
+                    <ul class="footer-links">
+                        <li><a href="{% url 'home' %}">Inicio</a></li>
+                        <li><a href="{% url 'servicios' %}">Servicios</a></li>
+                        <li><a href="{% url 'precios' %}">Precios</a></li>
+                        <li><a href="{% url 'portafolio' %}">Portafolio</a></li>
+                        <li><a href="{% url 'nosotros' %}">Nosotros</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4">
+                    <div class="footer-title">Contacto directo</div>
+                    <a href="https://wa.me/593990206856" target="_blank" class="btn-whatsapp d-inline-flex mb-3"
+                        style="font-size:0.9rem;padding:12px 24px">
+                        <i class="bi bi-whatsapp"></i> Escribir por WhatsApp
+                    </a>
+                    <p style="font-size:0.85rem">📧 pianchiche87f@gmailcom<br>📍 Ciudad de Machala, Ecuador</p>
+                </div>
+            </div>
+            <div class="footer-bottom"><span>© 2026 Impacto Web Agency. Todos los derechos reservados.</span></div>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/593990206856?text=Hola,%20me%20interesa%20una%20página%20web" target="_blank"
+        class="whatsapp-float">
+        <i class="bi bi-whatsapp text-white"></i>
+    </a>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{% static 'assets/js/main.js' %}"></script>
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', async function (e) {
+            e.preventDefault();
+            const btn = document.getElementById('btn-submit');
+            const alert = document.getElementById('form-alert');
+            const form = this;
+
+            // Validación básica
+            const nombre = form.nombre.value.trim();
+            const email = form.email.value.trim();
+            const mensaje = form.mensaje.value.trim();
+            if (!nombre || !email || !mensaje) {
+                alert.className = 'alert alert-danger';
+                alert.textContent = 'Por favor completa los campos obligatorios (*)';
+                alert.classList.remove('d-none');
+                return;
+            }
+
+            btn.disabled = true;
+            btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span> Enviando...';
+            alert.classList.add('d-none');
+
+            const payload = {
+                nombre,
+                empresa: form.empresa.value.trim(),
+                email,
+                telefono: form.telefono.value.trim(),
+                servicio: form.servicio.value,
+                presupuesto: form.presupuesto.value,
+                mensaje,
+            };
+
+            try {
+                const res = await fetch('/api/contacto/enviar/', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload),
+                });
+                const data = await res.json();
+                if (data.ok) {
+                    alert.className = 'alert alert-success';
+                    alert.innerHTML = '<i class="bi bi-check-circle-fill me-2"></i> ¡Mensaje enviado! Te responderemos en menos de 1 hora.';
+                    form.reset();
+                } else {
+                    throw new Error(data.error || 'Error al enviar');
+                }
+            } catch (err) {
+                alert.className = 'alert alert-danger';
+                alert.innerHTML = `<i class="bi bi-exclamation-triangle-fill me-2"></i> ${err.message}. Escríbenos por <a href="https://wa.me/593990206856" target="_blank" class="alert-link">WhatsApp</a>.`;
+            } finally {
+                alert.classList.remove('d-none');
+                btn.disabled = false;
+                btn.innerHTML = 'Enviar mensaje <i class="bi bi-send ms-2"></i>';
+            }
+        });
+    </script>
+</body>
+
+</html>
