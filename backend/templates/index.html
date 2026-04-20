@@ -6,7 +6,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ImpactoWeb</title>
-    <link rel="icon" href="{% static 'assets/img/logo1.png' %}" type="image/png">
+    <link rel="icon" href="{% static 'assets/img/logo2.png' %}" type="image/png">
     <meta name="description"
         content="Diseñamos y desarrollamos páginas web profesionales para emprendedores, negocios y empresas. Resultados reales, inversión inteligente." />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -173,7 +173,7 @@
     <!-- NAVBAR -->
     <nav class="navbar navbar-expand-lg fixed-top">
         <div class="container">
-            <img src="{% static 'assets/img/logo1.png' %}" alt="Logo" height="40" class="me-2 rounded-circle">
+            <img src="{% static 'assets/img/logo2.png' %}" alt="Logo" style="height:40px; width:auto;" class="me-2">
             <a class="navbar-brand" href="{% url 'home' %}">Impacto<span>Web</span></a>
             <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
                 <i class="bi bi-list text-white fs-4"></i>
@@ -237,7 +237,11 @@
                 <div class="col-lg-5 d-none d-lg-flex justify-content-center align-items-center">
                     <div class="hero-logo-box">
                         <div class="hero-logo-inner">
-                            <div class="hero-logo-icon"><i class="bi bi-code-slash"></i></div>
+                            <div class="hero-logo-icon" style="width:60px; height:60px;">
+                                <img src="{% static 'assets/img/logo2.png' %}" alt="Logo"
+                                    style="width:100%; height:100%; object-fit:contain;">
+                            </div>
+
                             <div class="hero-logo-name">Impacto<span>Web</span></div>
                             <div class="hero-logo-tagline">Soluciones Digitales Profesional</div>
                             <div class="hero-logo-dots">
